@@ -99,9 +99,36 @@ namespace ExtraConcentratedJuice.RektEcon
                 amount--;
             }
 
-            if (RektEcon.Instance.Handler.ItemIsGun(id))
+            string itemType = RektEcon.Instance.Handler.GetItemType(id);
+
+            switch (itemType)
             {
-                price = price * Convert.ToDecimal(.60);
+                case "Gun":
+                    price = price * Convert.ToDecimal(0.55);
+                    break;
+                case "Magazine":
+                    price = price * Convert.ToDecimal(0.45);
+                    break;
+                case "Shirt":
+                    price = price * Convert.ToDecimal(0.80);
+                    break;
+                case "Pants":
+                    price = price * Convert.ToDecimal(0.80);
+                    break;
+                case "Vest":
+                    price = price * Convert.ToDecimal(0.80);
+                    break;
+                case "Hat":
+                    price = price * Convert.ToDecimal(0.80);
+                    break;
+                case "Backpack":
+                    price = price * Convert.ToDecimal(0.80);
+                    break;
+                case "Mask":
+                    price = price * Convert.ToDecimal(0.80);
+                    break;
+                default:
+                    break;
             }
 
             RektEcon.Instance.Handler.AddBalance(caller.Id, price);

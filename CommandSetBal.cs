@@ -45,7 +45,7 @@ namespace ExtraConcentratedJuice.RektEcon
 
                 decimal amt;
 
-                if (!Decimal.TryParse(args[0], out amt) || amt <= 0)
+                if (!Decimal.TryParse(args[1], out amt) || amt <= 0)
                 {
                     UnturnedChat.Say(caller, RektEcon.Instance.Translations.Instance.Translate("invalid_amount"), UnityEngine.Color.red);
                     return;

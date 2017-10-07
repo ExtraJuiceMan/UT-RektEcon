@@ -94,6 +94,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandKys.cs" />
+    <Compile Include="CommandBox.cs" />
     <Compile Include="CommandPrice.cs" />
     <Compile Include="CommandSell.cs" />
     <Compile Include="CommandBuy.cs" />
@@ -107,7 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net20\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net20\System.Data.SQLite.Core.targets')" />

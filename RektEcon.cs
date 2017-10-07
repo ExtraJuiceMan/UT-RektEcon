@@ -37,6 +37,7 @@ namespace ExtraConcentratedJuice.RektEcon
             get
             {
                 return new TranslationList(){
+                { "command_unbox", "You've unboxed 1x {0}!" },
                 { "command_balance", "You have {0}{1}." },
                 { "command_balance_other", "{0} has {1}{2}." },
                 { "command_balance_invalid_perms", "You do not have the required permissions to view other balances." },

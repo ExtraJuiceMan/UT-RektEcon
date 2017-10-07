@@ -59,8 +59,8 @@ namespace ExtraConcentratedJuice.RektEcon
 
             RektEcon.Instance.Handler.AddBalance(caller.Id, -amt);
             RektEcon.Instance.Handler.AddBalance(receiver.Id, amt);
-            UnturnedChat.Say(caller, RektEcon.Instance.Translations.Instance.Translate("command_pay_sent", receiver.CharacterName, amt, RektEcon.Instance.Configuration.Instance.Currency));
-            UnturnedChat.Say(receiver, RektEcon.Instance.Translations.Instance.Translate("command_pay_get", amt, RektEcon.Instance.Configuration.Instance.Currency, caller.DisplayName), UnityEngine.Color.yellow);
+            UnturnedChat.Say(caller, RektEcon.Instance.Translations.Instance.Translate("command_pay_sent", receiver.CharacterName, amt, RektEcon.Instance.Configuration.Instance.Currency), UnturnedChat.GetColorFromName("#005d03", UnityEngine.Color.green));
+            UnturnedChat.Say(receiver, RektEcon.Instance.Translations.Instance.Translate("command_pay_get", amt, RektEcon.Instance.Configuration.Instance.Currency, caller.DisplayName), UnturnedChat.GetColorFromName("#005d03", UnityEngine.Color.green));
         }
     }
 }
