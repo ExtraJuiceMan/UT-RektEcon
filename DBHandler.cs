@@ -50,10 +50,25 @@ namespace ExtraConcentratedJuice.RektEcon
             }
             return price;
         }
+        public decimal GetItemSellPrice(ushort itemId)
+
+        {
+            string sql = String.Format("SELECT sellPrice FROM items WHERE id = {0};", itemId);
+            SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+            dbConnection.Open();
+            object result = command.ExecuteScalar();
+            dbConnection.Close();
+            decimal price = 0;
+            if (result != null)
+            {
+                price = Convert.ToDecimal(result);
+            }
+            return price;
+        }
 
         public ushort RandomItem(string type)
         {
-            string sql = String.Format("SELECT id FROM items WHERE type = '{0}' AND price != 0 ORDER BY RANDOM();", type);
+            string sql = String.Format("SELECT id FROM items WHERE type = '{0}' AND price <> 0 ORDER BY RANDOM();", type);
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             ushort randItem = 0;
             dbConnection.Open();
@@ -84,12 +99,12 @@ namespace ExtraConcentratedJuice.RektEcon
                 command = new SQLiteCommand(sql, dbConnection);
                 command.ExecuteNonQuery();
             }
-            dbConnection.Close();
         }
+
         public void InitializeDatabase()
         {
             string sql = "CREATE TABLE IF NOT EXISTS users(id INT PRIMARY KEY, bal REAL);";
-            string sql2 = "CREATE TABLE IF NOT EXISTS items(id INT PRIMARY KEY, price REAL, name TEXT, type TEXT);";
+            string sql2 = "CREATE TABLE IF NOT EXISTS items(id INT PRIMARY KEY, price REAL, sellPrice REAL, name TEXT, type TEXT);";
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             dbConnection.Open();
             command.ExecuteNonQuery();

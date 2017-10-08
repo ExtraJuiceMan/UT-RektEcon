@@ -76,7 +76,7 @@ namespace ExtraConcentratedJuice.RektEcon
                 return;
             }
 
-            decimal price = RektEcon.Instance.Handler.GetItemPrice(id) * Convert.ToDecimal(amount);
+            decimal price = RektEcon.Instance.Handler.GetItemSellPrice(id) * Convert.ToDecimal(amount);
 
             if (price == 0)
             {
@@ -99,38 +99,40 @@ namespace ExtraConcentratedJuice.RektEcon
                 amount--;
             }
 
-            string itemType = RektEcon.Instance.Handler.GetItemType(id);
-
-            switch (itemType)
+            if (!RektEcon.Instance.Configuration.Instance.UseSellColumn)
             {
-                case "Gun":
-                    price = price * Convert.ToDecimal(0.55);
-                    break;
-                case "Magazine":
-                    price = price * Convert.ToDecimal(0.45);
-                    break;
-                case "Shirt":
-                    price = price * Convert.ToDecimal(0.80);
-                    break;
-                case "Pants":
-                    price = price * Convert.ToDecimal(0.80);
-                    break;
-                case "Vest":
-                    price = price * Convert.ToDecimal(0.80);
-                    break;
-                case "Hat":
-                    price = price * Convert.ToDecimal(0.80);
-                    break;
-                case "Backpack":
-                    price = price * Convert.ToDecimal(0.80);
-                    break;
-                case "Mask":
-                    price = price * Convert.ToDecimal(0.80);
-                    break;
-                default:
-                    break;
+                price = RektEcon.Instance.Handler.GetItemPrice(id);
+                string itemType = RektEcon.Instance.Handler.GetItemType(id);
+                switch (itemType)
+                {
+                    case "Gun":
+                        price = price * Convert.ToDecimal(0.55);
+                        break;
+                    case "Magazine":
+                        price = price * Convert.ToDecimal(0.45);
+                        break;
+                    case "Shirt":
+                        price = price * Convert.ToDecimal(0.80);
+                        break;
+                    case "Pants":
+                        price = price * Convert.ToDecimal(0.80);
+                        break;
+                    case "Vest":
+                        price = price * Convert.ToDecimal(0.80);
+                        break;
+                    case "Hat":
+                        price = price * Convert.ToDecimal(0.80);
+                        break;
+                    case "Backpack":
+                        price = price * Convert.ToDecimal(0.80);
+                        break;
+                    case "Mask":
+                        price = price * Convert.ToDecimal(0.80);
+                        break;
+                    default:
+                        break;
+                }
             }
-
             RektEcon.Instance.Handler.AddBalance(caller.Id, price);
             UnturnedChat.Say(caller, RektEcon.Instance.Translations.Instance.Translate("command_sell", oamount, itemName, price, RektEcon.Instance.Configuration.Instance.Currency));
         }

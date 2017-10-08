@@ -52,6 +52,7 @@ namespace ExtraConcentratedJuice.RektEcon
                 }
                 RektEcon.Instance.Handler.SetBalance(otherPlayer.Id, amt);
                 UnturnedChat.Say(caller, RektEcon.Instance.Translations.Instance.Translate("command_setbalance_other", otherPlayer.CharacterName, amt, RektEcon.Instance.Configuration.Instance.Currency));
+                UnturnedChat.Say(otherPlayer, RektEcon.Instance.Translations.Instance.Translate("command_setbalance_victim", caller.DisplayName, amt, RektEcon.Instance.Configuration.Instance.Currency));
                 return;
 
             }
